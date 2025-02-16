@@ -31,9 +31,8 @@ import {
   
   function CourseraHomePage() {
     const [activeTab, setActiveTab] = useState('inProgress');
-    // const [myLearning, setMyLearning] = useState('myLearning');
     const [home, setHome] = useState('home');
-    console.log(home);
+   
     const featuredCourses = [
       {
         id: 201,
@@ -338,7 +337,7 @@ import {
           {/* Continue Learning Section */}
           <h4 className="mb-3">Continue learning</h4>
           <Row className="mb-4">
-            {inProgressCourses.map((course) => (
+            {inProgressCourses.slice(0,2).map((course) => (
               <Col md={4} className="mb-3" key={course.id}>
                 <Card className="h-100">
                   <Card.Body>
