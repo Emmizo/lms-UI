@@ -1,13 +1,15 @@
 import { 
     Navbar, Nav, Form, FormControl, Button, 
     Container, Badge, Card, Dropdown, ProgressBar,
-    Pagination, Row, Col, ListGroup, Tabs, Tab
+    Pagination, Row, Col, ListGroup,
+    Carousel
   } from 'react-bootstrap';
   import { 
     Search, Bell, Person, Globe, 
     ThreeDotsVertical, ChevronRight, 
     ChevronDown, Facebook, Linkedin, 
-    Twitter, Youtube, Instagram, CheckCircleFill
+    Twitter, Youtube, Instagram, CheckCircleFill,
+     StarFill, Award, Book, Calendar, Clock
   } from 'react-bootstrap-icons';
   import { useState } from 'react';
   import Logo from './assets/images/logo.svg';
@@ -26,118 +28,199 @@ import {
   import dataScience from './assets/images/dataScience.png'
   import machineLearning from './assets/images/machineLearning.jpg'
   
-  function CourserapMyLearningPage() {
+  
+  function CourseraHomePage() {
     const [activeTab, setActiveTab] = useState('inProgress');
+    // const [myLearning, setMyLearning] = useState('myLearning');
+    const [home, setHome] = useState('home');
+    console.log(home);
+    const featuredCourses = [
+      {
+        id: 201,
+        logo:  dataScience,
+        name: "Generative AI for Software Development",
+        provider: "DeepLearning.AI",
+        rating: 4.8,
+        ratingCount: 2452,
+        type: "Specialization",
+        level: "Intermediate"
+      },
+      {
+        id: 202,
+        logo: machineLearning,
+        name: "Generative AI with Large Language Models",
+        provider: "DeepLearning.AI & AWS",
+        rating: 4.7,
+        ratingCount: 3120,
+        type: "Course",
+        level: "Intermediate"
+      },
+      {
+        id: 203,
+        logo: machineLearning,
+        name: "Data Engineering",
+        provider: "Google Cloud",
+        rating: 4.6,
+        ratingCount: 1876,
+        type: "Professional Certificate",
+        level: "Beginner to Intermediate"
+      },
+      {
+        id: 204,
+        logo: os,
+        name: "Flutter App Development",
+        provider: "Meta",
+        rating: 4.9,
+        ratingCount: 987,
+        type: "Specialization",
+        level: "Intermediate"
+      }
+    ];
+    
+    const recommendedCourses = [
+      {
+        id: 301,
+        logo: pythonLogo,
+        name: "Python for Data Science and Machine Learning",
+        provider: "IBM",
+        enrolledCount: "257K+ already enrolled",
+        type: "Specialization"
+      },
+      {
+        id: 302,
+        logo: reactLogo,
+        name: "Advanced React Patterns",
+        provider: "Meta",
+        enrolledCount: "124K+ already enrolled",
+        type: "Course"
+      },
+      {
+        id: 303,
+        logo: os,
+        name: "Flutter for Beginners",
+        provider: "Google",
+        enrolledCount: "178K+ already enrolled",
+        type: "Course"
+      }
+    ];
     
     const inProgressCourses = [
       {
-        id: 1,
-        logo: reactLogo,
-        name: "Front-End Web Development with React",
-        provider: "The Hong Kong University of Science and Technology",
-        dueDate: "3/4/2025",
-        type: "Course"
-      },
-      {
-        id: 2,
-        logo: reactNativeLogo,
-        name: "Multiplatform Mobile App Development with React Native",
-        provider: "The Hong Kong University of Science and Technology",
-        dueDate: "3/12/2025",
-        type: "Course"
-      },
-      {
-        id: 3,
-        logo: os,
-        name: "Operating Systems and You: Becoming a Power User",
-        provider: "Google",
-        dueDate: "3/22/2025",
-        type: "Course",
-        specialization: "Google IT Support Professional Certificate"
-      },
-      {
-        id: 4,
-        logo: business,
-        name: "Create a Financial Statement using Google Sheets",
-        provider: "Coursera Project Network",
-        dueDate: "2/10/2025",
-        type: "Project"
-      },
-      {
-        id: 5,
-        logo: responsive,
-        name: "Responsive Web Design",
-        provider: "Multiple Partners",
-        dueDate: "3/13/2025",
-        type: "Course"
-      },
-      {
-        id: 6,
-        logo: cn,
-        name: "Computer Networks and Network Security",
-        provider: "IBM",
-        dueDate: "3/8/2025",
-        type: "Course",
-        specialization: "IT Fundamentals for Cybersecurity Specialization"
-      },
-      {
-        id: 7,
-        logo: math,
-        name: "Mathematical Thinking in Computer Science",
-        provider: "University of California San Diego",
-        dueDate: "3/22/2025",
-        type: "Course"
-      },
-      {
-        id: 8,
-        logo: fR,
-        name: "Fundamentos de React Hooks",
-        provider: "Coursera Project Network",
-        dueDate: "2/15/2025", 
-        type: "Project"
-      }
+              id: 1,
+              logo: reactLogo,
+              name: "Front-End Web Development with React",
+              provider: "The Hong Kong University of Science and Technology",
+              dueDate: "3/4/2025",
+              type: "Course",
+              progress: 45,
+            },
+            {
+              id: 2,
+              logo: reactNativeLogo,
+              name: "Multiplatform Mobile App Development with React Native",
+              provider: "The Hong Kong University of Science and Technology",
+              dueDate: "3/12/2025",
+              type: "Course",
+              progress: 40,
+            },
+            {
+              id: 3,
+              logo: os,
+              name: "Operating Systems and You: Becoming a Power User",
+              provider: "Google",
+              dueDate: "3/22/2025",
+              type: "Course",
+              specialization: "Google IT Support Professional Certificate"
+              ,
+              progress: 23,
+            },
+            {
+              id: 4,
+              logo: business,
+              name: "Create a Financial Statement using Google Sheets",
+              provider: "Coursera Project Network",
+              dueDate: "2/10/2025",
+              type: "Project",
+              progress: 2,
+            },
+            {
+              id: 5,
+              logo: responsive,
+              name: "Responsive Web Design",
+              provider: "Multiple Partners",
+              dueDate: "3/13/2025",
+              type: "Course",
+              progress: 98,
+            },
+            {
+              id: 6,
+              logo: cn,
+              name: "Computer Networks and Network Security",
+              provider: "IBM",
+              dueDate: "3/8/2025",
+              type: "Course",
+              specialization: "IT Fundamentals for Cybersecurity Specialization",
+              progress: 34,
+            },
+            {
+              id: 7,
+              logo: math,
+              name: "Mathematical Thinking in Computer Science",
+              provider: "University of California San Diego",
+              dueDate: "3/22/2025",
+              type: "Course",
+              progress: 60,
+            },
+            {
+              id: 8,
+              logo: fR,
+              name: "Fundamentos de React Hooks",
+              provider: "Coursera Project Network",
+              dueDate: "2/15/2025", 
+              type: "Project",
+              progress: 80,
+            }
     ];
-  
     const completedCourses = [
-      {
-        id: 101,
-        logo: pythonLogo,
-        name: "Python for Everybody",
-        provider: "University of Michigan",
-        completedDate: "12/15/2024",
-        type: "Specialization",
-        certificate: true
-      },
-      {
-        id: 102,
-        logo: dataScience,
-        name: "Data Science Ethics",
-        provider: "University of Michigan",
-        completedDate: "11/20/2024",
-        type: "Course",
-        certificate: true
-      },
-      {
-        id: 103,
-        logo: machineLearning,
-        name: "Machine Learning",
-        provider: "Stanford University",
-        completedDate: "10/5/2024",
-        type: "Course",
-        certificate: true,
-        specialization: "Data Science Specialization"
-      },
-      {
-        id: 104,
-        logo: business,
-        name: "Introduction to Financial Accounting",
-        provider: "University of Pennsylvania",
-        completedDate: "9/30/2024",
-        type: "Course",
-        certificate: true
-      }
-    ];
-  
+        {
+          id: 101,
+          logo: pythonLogo,
+          name: "Python for Everybody",
+          provider: "University of Michigan",
+          completedDate: "12/15/2024",
+          type: "Specialization",
+          certificate: true
+        },
+        {
+          id: 102,
+          logo: dataScience,
+          name: "Data Science Ethics",
+          provider: "University of Michigan",
+          completedDate: "11/20/2024",
+          type: "Course",
+          certificate: true
+        },
+        {
+          id: 103,
+          logo: machineLearning,
+          name: "Machine Learning",
+          provider: "Stanford University",
+          completedDate: "10/5/2024",
+          type: "Course",
+          certificate: true,
+          specialization: "Data Science Specialization"
+        },
+        {
+          id: 104,
+          logo: business,
+          name: "Introduction to Financial Accounting",
+          provider: "University of Pennsylvania",
+          completedDate: "9/30/2024",
+          type: "Course",
+          certificate: true
+        }
+      ];
+    
     const footerLinks = {
       'Coursera': [
         'About', 'What We Offer', 'Leadership', 'Careers', 'Catalog',
@@ -155,6 +238,7 @@ import {
         'Affiliates', 'Modern Slavery Statement', 'Manage Cookie Preferences'
       ]
     };
+    
   
     return (
       <div className="coursera-page">
@@ -207,8 +291,20 @@ import {
         <Navbar bg="white" variant="light" className="py-0 border-bottom">
           <Container>
             <Nav className="me-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
-              <Nav.Link href="#my-learning" active className="border-bottom border-primary border-3">My Learning</Nav.Link>
+              <Nav.Link href="#home"  className={` ${home === 'home' ? 'border-bottom border-primary border-3 active' : 'inactive'}`}  
+              onClick={() => setHome('home')}
+                style={{ cursor: 'pointer' }}
+                bg={home === 'home' ? 'primary' : 'light'} 
+                text={home === 'home' ? 'white' : 'dark'}
+                
+              >Home</Nav.Link>
+              <Nav.Link href="#my-learning"
+              className={` ${home === 'myLearning' ? 'border-bottom border-primary border-3 active' : 'inactive'}`} 
+               onClick={() => setHome('myLearning')}
+               style={{ cursor: 'pointer' }}
+               bg={home === 'myLearning' ? 'primary' : 'light'} 
+                text={home === 'myLearning' ? 'white' : 'dark'}
+              >My Learning</Nav.Link>
               <Nav.Link href="#online-degrees">Online Degrees</Nav.Link>
               <Nav.Link href="#careers">Careers</Nav.Link>
             </Nav>
@@ -216,6 +312,222 @@ import {
         </Navbar>
   
         {/* Main Content */}
+        {home==="home"?
+        <Container className="py-4">
+          {/* Welcome Section */}
+          <Row className="mb-4">
+            <Col>
+              <Card>
+                <Card.Body className="d-flex flex-column flex-md-row justify-content-between align-items-center">
+                  <div>
+                    <h2 className="mb-2">Welcome back, User!</h2>
+                    <p className="text-muted mb-0">Ready to continue your learning journey?</p>
+                  </div>
+                  <div className="mt-3 mt-md-0">
+                    <p className="text-primary mb-1">Your career goal: switch roles to a Mobile dev(Flutter)</p>
+                    <div className="d-flex align-items-center">
+                      <ProgressBar now={35} className="flex-grow-1 me-2" />
+                      <span className="text-muted small">35%</span>
+                    </div>
+                  </div>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+  
+          {/* Continue Learning Section */}
+          <h4 className="mb-3">Continue learning</h4>
+          <Row className="mb-4">
+            {inProgressCourses.map((course) => (
+              <Col md={4} className="mb-3" key={course.id}>
+                <Card className="h-100">
+                  <Card.Body>
+                    <div className="d-flex align-items-center mb-3">
+                      <img
+                        src={course.logo}
+                        alt={`${course.name} logo`}
+                        className="img-fluid me-3"
+                        style={{ maxWidth: "60px" }}
+                      />
+                      <div>
+                        <h6 className="mb-1">{course.name}</h6>
+                        <p className="text-muted small mb-0">{course.provider}</p>
+                      </div>
+                    </div>
+                    <ProgressBar now={course.progress} label={`${course.progress}%`} className="mb-2" />
+                    <p className="small text-muted mb-0">Due: {course.dueDate}</p>
+                  </Card.Body>
+                  <Card.Footer className="bg-white border-top-0">
+                    <Button variant="primary" className="w-100">
+                      Continue Learning
+                    </Button>
+                  </Card.Footer>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+  
+          {/* Featured Courses Carousel */}
+          <h4 className="mb-3">Featured this week</h4>
+          <Carousel className="mb-4 featured-carousel">
+            <Carousel.Item>
+              <Row>
+                {featuredCourses.slice(0, 2).map((course) => (
+                  <Col md={6} key={course.id}>
+                    <Card className="h-100">
+                      <Row className="g-0">
+                        <Col md={4}>
+                          <img
+                            src={course.logo}
+                            alt={course.name}
+                            className="img-fluid rounded-start h-100"
+                            style={{ objectFit: "cover" }}
+                          />
+                        </Col>
+                        <Col md={8}>
+                          <Card.Body>
+                            <p className="text-primary small mb-1">{course.type}</p>
+                            <h5 className="card-title mb-1">{course.name}</h5>
+                            <p className="text-muted small mb-2">{course.provider}</p>
+                            <div className="d-flex align-items-center mb-2">
+                              <StarFill className="text-warning me-1" />
+                              <span>{course.rating}</span>
+                              <span className="text-muted small ms-1">({course.ratingCount.toLocaleString()})</span>
+                            </div>
+                            <span className="badge bg-light text-dark">{course.level}</span>
+                          </Card.Body>
+                        </Col>
+                      </Row>
+                    </Card>
+                  </Col>
+                ))}
+              </Row>
+            </Carousel.Item>
+            <Carousel.Item>
+              <Row>
+                {featuredCourses.slice(2, 4).map((course) => (
+                  <Col md={6} key={course.id}>
+                    <Card className="h-100">
+                      <Row className="g-0">
+                        <Col md={4}>
+                          <img
+                            src={course.logo}
+                            alt={course.name}
+                            className="img-fluid rounded-start h-100"
+                            style={{ objectFit: "cover" }}
+                          />
+                        </Col>
+                        <Col md={8}>
+                          <Card.Body>
+                            <p className="text-primary small mb-1">{course.type}</p>
+                            <h5 className="card-title mb-1">{course.name}</h5>
+                            <p className="text-muted small mb-2">{course.provider}</p>
+                            <div className="d-flex align-items-center mb-2">
+                              <StarFill className="text-warning me-1" />
+                              <span>{course.rating}</span>
+                              <span className="text-muted small ms-1">({course.ratingCount.toLocaleString()})</span>
+                            </div>
+                            <span className="badge bg-light text-dark">{course.level}</span>
+                          </Card.Body>
+                        </Col>
+                      </Row>
+                    </Card>
+                  </Col>
+                ))}
+              </Row>
+            </Carousel.Item>
+          </Carousel>
+  
+          {/* Recommended Courses */}
+          <h4 className="mb-3">Recommended for you</h4>
+          <Row className="mb-4">
+            {recommendedCourses.map((course) => (
+              <Col md={4} className="mb-3" key={course.id}>
+                <Card className="h-100">
+                  <Card.Body>
+                    <div className="d-flex align-items-center mb-3">
+                      <img
+                        src={course.logo}
+                        alt={`${course.name} logo`}
+                        className="img-fluid me-3"
+                        style={{ maxWidth: "60px" }}
+                      />
+                      <div>
+                        <p className="text-primary small mb-1">{course.type}</p>
+                        <h6 className="mb-1">{course.name}</h6>
+                        <p className="text-muted small mb-0">{course.provider}</p>
+                      </div>
+                    </div>
+                    <p className="small text-muted mb-0">{course.enrolledCount}</p>
+                  </Card.Body>
+                  <Card.Footer className="bg-white border-top-0">
+                    <Button variant="outline-primary" className="w-100">
+                      Explore Course
+                    </Button>
+                  </Card.Footer>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+  
+          {/* Weekly Goal Card */}
+          <Row className="mb-4">
+            <Col>
+              <Card className="bg-light">
+                <Card.Body className="d-flex flex-column flex-md-row justify-content-between align-items-center">
+                  <div>
+                    <h5 className="mb-2">Set your weekly learning goal</h5>
+                    <p className="text-muted mb-0">Learners with goals are 75% more likely to complete their courses</p>
+                  </div>
+                  <Button variant="primary" className="mt-3 mt-md-0">
+                    Set weekly goal
+                  </Button>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+  
+          {/* Learning Stats */}
+          <h4 className="mb-3">Your learning stats</h4>
+          <Row className="mb-5">
+            <Col md={3}>
+              <Card className="text-center h-100">
+                <Card.Body>
+                  <Clock className="text-primary mb-2" size={24} />
+                  <h3>8.5</h3>
+                  <p className="text-muted">Hours learned this month</p>
+                </Card.Body>
+              </Card>
+            </Col>
+            <Col md={3}>
+              <Card className="text-center h-100">
+                <Card.Body>
+                  <Calendar className="text-primary mb-2" size={24} />
+                  <h3>12</h3>
+                  <p className="text-muted">Day streak</p>
+                </Card.Body>
+              </Card>
+            </Col>
+            <Col md={3}>
+              <Card className="text-center h-100">
+                <Card.Body>
+                  <Book className="text-primary mb-2" size={24} />
+                  <h3>3</h3>
+                  <p className="text-muted">Courses in progress</p>
+                </Card.Body>
+              </Card>
+            </Col>
+            <Col md={3}>
+              <Card className="text-center h-100">
+                <Card.Body>
+                  <Award className="text-primary mb-2" size={24} />
+                  <h3>5</h3>
+                  <p className="text-muted">Certificates earned</p>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+        </Container>: home ==="myLearning"?
         <Container className="py-4">
           <h1 className="h4 mb-2">My Learning</h1>
           
@@ -433,7 +745,7 @@ import {
               </div>
             )}
           </Row>
-        </Container>
+        </Container>:""}
   
         {/* Footer */}
         <footer className="bg-light mt-5 pt-5 pb-3">
@@ -486,4 +798,4 @@ import {
     );
   }
   
-  export default CourserapMyLearningPage;
+  export default CourseraHomePage;
